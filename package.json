@@ -1,0 +1,25 @@
+{
+  "name": "seagull-game",
+  "version": "1.0.0",
+  "description": "A responsive web game where you hide from seagulls",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "serve": "npx http-server . -p 8080 -c-1",
+    "start": "npm run build && npm run serve",
+    "clean": "rimraf dist"
+  },
+  "keywords": [
+    "game",
+    "typescript",
+    "web",
+    "seagull"
+  ],
+  "author": "KseniiaRiabova",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "@types/node": "^20.0.0"
+  }
+}

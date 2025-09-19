@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Seagull Game</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="stylesheet" href="styles/main.css" />
+  </head>
+  <body>
+    <div id="app">
+      <!-- Start Screen -->
+      <div id="start-screen" class="screen active">
+        <h1>🎵 Turn on music for better experience</h1>
+        <h2>Want to play the Seagull Game?</h2>
+        <p>
+          Select one of the rooms in the screen, don't let seagull to catch you.
+        </p>
+        <button id="start-btn" class="game-btn">Start Game</button>
+      </div>
+
+      <!-- Game Screen -->
+      <div id="game-screen" class="screen">
+        <div id="game-ui">
+          <div class="ui-top-center">
+            <div id="timer-display">Timer: <span id="timer">5</span>s</div>
+            <div id="seagull-counter">
+              Seagulls: <span id="counter">1/3</span>
+            </div>
+            <button id="music-toggle-btn" class="music-btn">🎵</button>
+          </div>
+        </div>
+        <div id="selection-prompt" class="selection-prompt hidden">
+          <div class="prompt-content">
+            <h3>Select a Room to Hide!</h3>
+            <button id="ready-btn" class="ready-btn">I'm Ready!</button>
+          </div>
+        </div>
+        <div id="game-board">
+          <!-- Rooms will be generated dynamically -->
+        </div>
+        <div id="seagull-container-1" class="seagull-container">
+          <img
+            class="seagull-img"
+            src="src/seagull/seagull.gif"
+            alt="Seagull 1"
+          />
+        </div>
+        <div id="seagull-container-2" class="seagull-container hidden">
+          <img
+            class="seagull-img"
+            src="src/seagull/seagull.gif"
+            alt="Seagull 2"
+          />
+        </div>
+        <div id="seagull-container-3" class="seagull-container hidden">
+          <img
+            class="seagull-img"
+            src="src/seagull/seagull.gif"
+            alt="Seagull 3"
+          />
+        </div>
+      </div>
+
+      <!-- Game Over Screen -->
+      <div id="game-over-screen" class="screen">
+        <h2 id="game-over-title">You Died!</h2>
+        <button id="try-again-btn" class="game-btn">Try Again</button>
+      </div>
+
+      <!-- Victory Screen -->
+      <div id="victory-screen" class="screen">
+        <h2>Great job! You Win!</h2>
+        <button id="play-again-btn" class="game-btn">Play Again?</button>
+      </div>
+    </div>
+
+    <script type="module" src="dist/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,552 @@
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  font-family: 'Arial', sans-serif;
+  background-color: #000;
+  color: #fff;
+  overflow: hidden;
+}
+
+#app {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+}
+
+/* Screen management */
+.screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.screen.active {
+  display: flex;
+}
+
+/* Start screen styles */
+#start-screen {
+  background: linear-gradient(135deg, #000 0%, #1a1a2e 100%);
+}
+
+#start-screen h1 {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  margin-bottom: 1rem;
+  color: #ffd700;
+}
+
+#start-screen h2 {
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+#start-screen p {
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  margin-bottom: 2rem;
+  max-width: 600px;
+  line-height: 1.5;
+}
+
+/* Button styles */
+.game-btn {
+  background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+  border: none;
+  padding: 15px 30px;
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  font-weight: bold;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+}
+
+.game-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
+}
+
+.game-btn:active {
+  transform: translateY(0);
+}
+
+/* Game screen styles */
+#game-screen {
+  background-color: #000;
+  padding: 10px;
+  position: relative;
+  /* Ensure seagulls can move within game screen */
+}
+
+#game-ui {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+.ui-top-center {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+#timer-display,
+#seagull-counter {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: clamp(
+    1.2rem,
+    2.5vw,
+    1.8rem
+  ); /* Increased from 1rem to 1.2rem and max from 1.2rem to 1.8rem */
+  font-weight: bold;
+  border: 2px solid #fff;
+}
+
+.music-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid #ffd700;
+  padding: 8px 12px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #ffd700;
+}
+
+.music-btn:hover {
+  background: rgba(255, 215, 0, 0.2);
+  transform: scale(1.1);
+}
+
+.music-btn.muted {
+  background: rgba(255, 0, 0, 0.2);
+  border-color: #ff4444;
+  color: #ff4444;
+}
+
+#timer {
+  color: #ffd700;
+}
+
+#counter {
+  color: #ff6b6b;
+}
+
+/* Selection prompt styles */
+.selection-prompt {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.9);
+  border: 3px solid #ffd700;
+  border-radius: 20px;
+  padding: 30px;
+  text-align: center;
+  z-index: 200;
+  min-width: 300px;
+  transition: all 0.3s ease;
+}
+
+.selection-prompt.hidden {
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, -50%) scale(0.8);
+}
+
+.selection-prompt h3 {
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  margin-bottom: 20px;
+  color: #ffd700;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.ready-btn {
+  background: linear-gradient(45deg, #22c55e, #16a34a);
+  border: none;
+  padding: 12px 25px;
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  font-weight: bold;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(34, 197, 94, 0.4);
+}
+
+.ready-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(34, 197, 94, 0.6);
+}
+
+.ready-btn:active {
+  transform: translateY(0);
+}
+
+/* Game board styles */
+#game-board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 12px;
+  width: 95vw;
+  height: 75vh;
+  max-width: 800px;
+  max-height: 800px;
+  margin-top: 60px; /* Moved up from 80px to 60px */
+}
+
+.room {
+  background: rgba(255, 255, 255, 0.05);
+  border: 3px solid #fff;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.room:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #ffd700;
+  transform: scale(1.05);
+}
+
+.room.selected {
+  background: rgba(34, 197, 94, 0.3);
+  border-color: #22c55e;
+  box-shadow: 0 0 20px rgba(34, 197, 94, 0.5);
+}
+
+.room.has-seagull {
+  background: rgba(239, 68, 68, 0.3);
+  border-color: #ef4444;
+  box-shadow: 0 0 25px rgba(239, 68, 68, 0.7);
+}
+
+.room.seagull-dancing {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: #ef4444;
+  animation: seagullDance 2s infinite;
+}
+
+.room-number {
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  font-weight: bold;
+  color: #fff;
+  z-index: 2;
+}
+
+/* Seagull containers */
+.seagull-container {
+  position: absolute;
+  top: 0; /* Start from origin for accurate transform calculations */
+  left: 0; /* Start from origin for accurate transform calculations */
+  width: 150px;
+  height: 150px;
+  z-index: 100;
+  transition: transform 5s ease-in-out;
+  pointer-events: none;
+}
+
+.seagull-container.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.seagull-container.moving {
+  transition: transform 5s ease-in-out;
+}
+
+.seagull-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Game over and victory screens */
+#game-over-screen,
+#victory-screen {
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+}
+
+#game-over-screen h2,
+#victory-screen h2 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin-bottom: 2rem;
+  color: #fff;
+}
+
+#game-over-title {
+  color: #ff6b6b;
+}
+
+#victory-screen h2 {
+  color: #2ecc71;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  #game-ui {
+    top: 10px;
+  }
+
+  .ui-top-center {
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  #timer-display,
+  #seagull-counter {
+    padding: 8px 15px;
+    font-size: 0.9rem;
+  }
+
+  .music-btn {
+    font-size: 1rem;
+    padding: 6px 10px;
+  }
+
+  #game-board {
+    width: 95vw;
+    height: 60vh;
+    margin-top: 100px;
+    gap: 8px;
+  }
+
+  .room {
+    border-width: 2px;
+    border-radius: 8px;
+  }
+
+  .room-number {
+    font-size: 2rem;
+  }
+
+  .seagull-container {
+    width: 100px;
+    height: 100px;
+  }
+
+  .selection-prompt {
+    min-width: 280px;
+    padding: 20px;
+  }
+
+  .selection-prompt h3 {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .screen {
+    padding: 15px;
+  }
+
+  #start-screen h1 {
+    font-size: 1.5rem;
+  }
+
+  #start-screen h2 {
+    font-size: 1.2rem;
+  }
+
+  #start-screen p {
+    font-size: 1rem;
+  }
+
+  .game-btn {
+    padding: 12px 25px;
+    font-size: 1rem;
+  }
+
+  .ui-top-center {
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  #timer-display,
+  #seagull-counter {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+  }
+
+  .music-btn {
+    font-size: 0.9rem;
+    padding: 6px 8px;
+  }
+
+  #game-board {
+    height: 55vh;
+    margin-top: 110px;
+  }
+
+  .room-number {
+    font-size: 1.5rem;
+  }
+
+  .seagull-container {
+    width: 80px;
+    height: 80px;
+  }
+
+  .selection-prompt {
+    min-width: 250px;
+    padding: 15px;
+  }
+
+  .selection-prompt h3 {
+    font-size: 1.2rem;
+    margin-bottom: 12px;
+  }
+
+  .ready-btn {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (orientation: landscape) and (max-height: 600px) {
+  #game-board {
+    height: 50vh;
+    width: 50vh;
+  }
+
+  #game-ui {
+    top: 5px;
+  }
+
+  #timer-display,
+  #seagull-counter {
+    padding: 5px 10px;
+    font-size: 0.8rem;
+  }
+}
+
+/* Custom room sizes for variation - ensuring 9 rooms fit in 3x3 grid */
+.room:nth-child(1) {
+  grid-row: span 1;
+  grid-column: span 1;
+}
+
+.room:nth-child(2) {
+  grid-row: span 1;
+  grid-column: span 2;
+}
+
+.room:nth-child(3) {
+  grid-row: span 1;
+  grid-column: span 1;
+}
+
+.room:nth-child(4) {
+  grid-row: span 2;
+  grid-column: span 1;
+}
+
+.room:nth-child(5) {
+  grid-row: span 1;
+  grid-column: span 1;
+}
+
+.room:nth-child(6) {
+  grid-row: span 1;
+  grid-column: span 1;
+}
+
+.room:nth-child(7) {
+  grid-row: span 1;
+  grid-column: span 1;
+}
+
+.room:nth-child(8) {
+  grid-row: span 2; /* Make room 8 taller */
+  grid-column: span 1;
+}
+
+.room:nth-child(9) {
+  grid-row: span 2; /* Make room 9 same height as room 8 */
+  grid-column: span 2; /* Keep room 9 wider */
+}
+
+/* Animation for seagull appearance */
+@keyframes seagullIdle {
+  0%,
+  100% {
+    transform: scale(1) rotate(-2deg);
+  }
+  50% {
+    transform: scale(1.1) rotate(2deg);
+  }
+}
+
+@keyframes seagullAppear {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes seagullDance {
+  0%,
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+  25% {
+    transform: scale(1.1) rotate(-5deg);
+  }
+  50% {
+    transform: scale(1.05) rotate(0deg);
+  }
+  75% {
+    transform: scale(1.1) rotate(5deg);
+  }
+}
+
+.room.seagull-dancing .room-number {
+  opacity: 0;
+}
+
+/* Loading animation */
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.loading {
+  animation: pulse 1.5s infinite;
+}
