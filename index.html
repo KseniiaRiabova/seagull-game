@@ -4,18 +4,37 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Seagull Game</title>
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="stylesheet" href="styles/main.css" />
   </head>
   <body>
     <div id="app">
       <!-- Start Screen -->
       <div id="start-screen" class="screen active">
-        <h1>🎵 Turn on music for better experience</h1>
-        <h2>Want to play the Seagull Game?</h2>
-        <p>
-          Select one of the rooms in the screen, don't let seagull to catch you.
-        </p>
+        <div class="music-notification">
+          <div class="notification-icon">🎵</div>
+          <div class="notification-text">
+            Turn on music for better experience!
+          </div>
+        </div>
+        <div class="seagull-welcome">
+          <a
+            href="https://www.linkedin.com/in/riabovakseniia/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="seagull-link"
+            title="Visit my LinkedIn profile"
+          >
+            <img
+              src="src/seagull/seagull.gif"
+              alt="Welcome Seagull - Click to visit LinkedIn"
+              class="welcome-seagull clickable"
+            />
+          </a>
+        </div>
+        <h2>Don't let seagull catch you</h2>
+        <p>Select one of the rooms in the screen.</p>
+        <p>Survive 3 waves to win the game!</p>
         <button id="start-btn" class="game-btn">Start Game</button>
       </div>
 
@@ -64,14 +83,30 @@
 
       <!-- Game Over Screen -->
       <div id="game-over-screen" class="screen">
-        <h2 id="game-over-title">You Died!</h2>
-        <button id="try-again-btn" class="game-btn">Try Again</button>
+        <div class="game-result-content">
+          <img
+            src="src/seagull/seagull-happy.png"
+            alt="Happy Seagull"
+            class="result-seagull"
+          />
+          <h2 id="game-over-title" class="game-over-text">
+            Seagull caught you!
+          </h2>
+          <button id="try-again-btn" class="game-btn">Try Again?</button>
+        </div>
       </div>
 
       <!-- Victory Screen -->
       <div id="victory-screen" class="screen">
-        <h2>Great job! You Win!</h2>
-        <button id="play-again-btn" class="game-btn">Play Again?</button>
+        <div class="game-result-content">
+          <img
+            src="src/seagull/seagull-sad.png"
+            alt="Sad Seagull"
+            class="result-seagull"
+          />
+          <h2>Great job! You Win!</h2>
+          <button id="play-again-btn" class="game-btn">Play Again?</button>
+        </div>
       </div>
     </div>
 
