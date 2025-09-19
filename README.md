@@ -1,5 +1,9 @@
 # Seagull Game
 
+<div align="center">
+  <img src="src/seagull/seagull.gif" alt="Seagull Animation" width="200"/>
+</div>
+
 A responsive web game where you hide from seagulls using TypeScript and advanced random algorithms.
 
 ## Game Features
@@ -65,6 +69,8 @@ styles/
 assets/
 └── seagull/
     ├── seagull.gif        # Seagull animation
+    ├── seagull-happy.png  # Happy seagull (game over)
+    ├── seagull-sad.png    # Sad seagull (victory)
     └── seagull.m4a        # Background music
 ```
 

@@ -103,10 +103,26 @@ body {
   margin-bottom: 2rem;
 }
 
+.seagull-link {
+  display: inline-block;
+  text-decoration: none;
+}
+
 .welcome-seagull {
-  width: 120px;
+  width: 160px;
   height: auto;
   animation: float 3s ease-in-out infinite;
+  transition: all 0.3s ease;
+}
+
+.welcome-seagull.clickable:hover {
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.6));
+  cursor: pointer;
+}
+
+.seagull-link:hover .welcome-seagull {
+  animation-duration: 1s;
 }
 
 @keyframes float {
@@ -605,6 +621,71 @@ body {
 
 .room.seagull-dancing .room-number {
   opacity: 0;
+}
+
+/* Social Footer */
+.social-footer {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.social-links {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.social-link:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.social-icon {
+  width: 24px;
+  height: 24px;
+  fill: #fff;
+  transition: fill 0.3s ease;
+}
+
+.social-link:hover .social-icon.linkedin {
+  fill: #0077b5;
+}
+
+.social-link:hover .social-icon.github {
+  fill: #333;
+}
+
+@media (max-width: 768px) {
+  .social-footer {
+    bottom: 15px;
+    right: 15px;
+  }
+
+  .social-link {
+    width: 40px;
+    height: 40px;
+  }
+
+  .social-icon {
+    width: 20px;
+    height: 20px;
+  }
 }
 
 /* Loading animation */
