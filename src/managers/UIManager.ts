@@ -47,6 +47,10 @@ export class UIManager {
       targetScreen.classList.add('active');
     }
 
+    // Add body classes for social icon positioning
+    document.body.className = ''; // Clear existing classes
+    document.body.classList.add(`screen-${screen}`);
+
     this.currentScreen = screen;
   }
 
@@ -86,18 +90,56 @@ export class UIManager {
     const rooms = document.querySelectorAll('.room');
     rooms.forEach((room) => {
       room.classList.remove('selected');
+      // Remove any existing french fries
+      const existingFries = room.querySelector('.french-fries');
+      if (existingFries) {
+        existingFries.remove();
+      }
+      // Show room numbers again
+      const roomNumber = room.querySelector('.room-number');
+      if (roomNumber) {
+        (roomNumber as HTMLElement).style.display = '';
+      }
     });
 
     const selectedRoom = document.querySelector(`[data-room-id="${roomId}"]`);
     if (selectedRoom) {
       selectedRoom.classList.add('selected');
+
+      // Hide the room number
+      const roomNumber = selectedRoom.querySelector('.room-number');
+      if (roomNumber) {
+        (roomNumber as HTMLElement).style.display = 'none';
+      }
+
+      // Add french fries to the selected room
+      const friesImg = document.createElement('img');
+      friesImg.src = 'src/seagull/french-fries-or-chips.png';
+      friesImg.alt = 'French Fries';
+      friesImg.className = 'french-fries';
+      selectedRoom.appendChild(friesImg);
     }
+
+    // Disable clicking on all rooms after selection
+    rooms.forEach((room) => {
+      (room as HTMLElement).style.pointerEvents = 'none';
+    });
   }
 
   public showSeagullInRoom(roomId: number): void {
     const room = document.querySelector(`[data-room-id="${roomId}"]`);
     if (room) {
       room.classList.add('has-seagull');
+
+      // If there are french fries in this room, add seagull image on top
+      const friesImg = room.querySelector('.french-fries');
+      if (friesImg) {
+        const seagullImg = document.createElement('img');
+        seagullImg.src = 'src/seagull/seagull-happy.png';
+        seagullImg.alt = 'Seagull';
+        seagullImg.className = 'room-seagull';
+        room.appendChild(seagullImg);
+      }
     }
   }
 
@@ -270,6 +312,23 @@ export class UIManager {
     const rooms = document.querySelectorAll('.room');
     rooms.forEach((room) => {
       room.classList.remove('selected', 'has-seagull', 'seagull-dancing');
+
+      // Remove french fries and room seagulls
+      const friesImg = room.querySelector('.french-fries');
+      if (friesImg) {
+        friesImg.remove();
+      }
+      const seagullImg = room.querySelector('.room-seagull');
+      if (seagullImg) {
+        seagullImg.remove();
+      }
+
+      // Re-enable clicking and show room numbers
+      (room as HTMLElement).style.pointerEvents = '';
+      const roomNumber = room.querySelector('.room-number');
+      if (roomNumber) {
+        (roomNumber as HTMLElement).style.display = '';
+      }
     });
   }
 
@@ -277,6 +336,13 @@ export class UIManager {
     const room = document.querySelector(`[data-room-id="${roomId}"]`);
     if (room) {
       room.classList.remove('has-seagull');
+
+      // Remove the room seagull image if it exists
+      const seagullImg = room.querySelector('.room-seagull');
+      if (seagullImg) {
+        seagullImg.remove();
+      }
+
       setTimeout(() => {
         room.classList.remove('selected');
       }, 500);

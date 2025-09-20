@@ -333,6 +333,30 @@ body {
   z-index: 2;
 }
 
+.french-fries {
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  object-fit: contain;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.room-seagull {
+  position: absolute;
+  width: 60%;
+  height: 60%;
+  object-fit: contain;
+  z-index: 3;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
 /* Seagull containers */
 .seagull-container {
   position: absolute;
@@ -376,8 +400,6 @@ body {
 .result-seagull {
   width: 200px;
   height: auto;
-  border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
 }
 
 #game-over-screen .game-over-text {
@@ -629,6 +651,29 @@ body {
   bottom: 20px;
   right: 20px;
   z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+/* Center social icons on specific screens */
+body.screen-start .social-footer,
+body.screen-game-over .social-footer,
+body.screen-victory .social-footer {
+  bottom: 30px;
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
+}
+
+/* Add bottom padding to screens to prevent overlap */
+body.screen-start #start-screen,
+body.screen-game-over #game-over-screen,
+body.screen-victory #victory-screen {
+  padding-bottom: 120px;
+}
+
+/* Ensure game screen has normal padding */
+body.screen-game #game-screen {
+  padding-bottom: 20px;
 }
 
 .social-links {
@@ -675,6 +720,20 @@ body {
   .social-footer {
     bottom: 15px;
     right: 15px;
+  }
+
+  /* Adjust centered social icons for mobile */
+  body.screen-start .social-footer,
+  body.screen-game-over .social-footer,
+  body.screen-victory .social-footer {
+    bottom: 20px;
+  }
+
+  /* Reduce bottom padding on mobile */
+  body.screen-start #start-screen,
+  body.screen-game-over #game-over-screen,
+  body.screen-victory #victory-screen {
+    padding-bottom: 100px;
   }
 
   .social-link {

@@ -127,7 +127,7 @@ export class SeagullGame {
     );
 
     console.log(
-      `Seagull ${this.gameState.currentSeagullWave} (${currentWave.algorithm}) targeting room ${currentWave.targetRoom}`
+      `Seagull ${this.gameState.currentSeagullWave} using ${currentWave.algorithm} algorithm`
     );
 
     this.gameState.selectedRoomId = null;
@@ -227,6 +227,14 @@ export class SeagullGame {
     this.uiManager.selectRoom(roomId);
 
     console.log(`Player selected room ${roomId}`);
+
+    // Stop the timer and immediately start seagull movement
+    if (this.timerInterval) {
+      clearInterval(this.timerInterval);
+      this.timerInterval = null;
+    }
+
+    this.startSeagullMovement();
   }
 
   private gameOver(message?: string): void {
