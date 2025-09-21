@@ -129,7 +129,7 @@ The Konami sequence: ↑↑↓↓←→←→BA
             '🐦 "Off to LinkedIn we go!"',
             '🐦 "Time to network professionally!"',
             '🐦 "LinkedIn seagull mode activated!"',
-            '🐦 "Let\'s connect with other developers!"',
+            '🐦 "Let\'s connect"',
           ];
           console.log(messages[Math.floor(Math.random() * messages.length)]);
         }
