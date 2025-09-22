@@ -202,7 +202,7 @@ export class SeagullGame {
     this.uiManager.showSeagullInRoom(currentWave.targetRoom);
 
     if (this.gameState.selectedRoomId === currentWave.targetRoom) {
-      this.gameOver('The seagull found you!');
+      this.gameOver('TOh no! Your food is gone!');
     } else {
       this.gameState.seagullsDefeated.push(currentWave.id);
       currentWave.isActive = false;

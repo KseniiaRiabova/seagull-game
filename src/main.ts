@@ -122,17 +122,6 @@ The Konami sequence: ↑↑↓↓←→←→BA
         welcomeSeagull.style.filter =
           'drop-shadow(0 0 20px rgba(255, 215, 0, 0.8))';
         welcomeSeagull.style.transform = 'scale(1.1)';
-
-        // Random console message
-        if (Math.random() > 0.7) {
-          const messages = [
-            '🐦 "Off to LinkedIn we go!"',
-            '🐦 "Time to network professionally!"',
-            '🐦 "LinkedIn seagull mode activated!"',
-            '🐦 "Let\'s connect"',
-          ];
-          console.log(messages[Math.floor(Math.random() * messages.length)]);
-        }
       });
 
       seagullLink.addEventListener('mouseleave', () => {
